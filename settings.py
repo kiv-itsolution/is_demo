@@ -36,7 +36,7 @@ SECRET_KEY = 'UxWXNk8hFEJYUkstPtBdtNgvqKfOFbME'
 DEBUG = False
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ['https://751b-46-252-249-158.ngrok-free.app']
 
 # Application definition
 
@@ -47,15 +47,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'post_currency',
-
     'integration_utils.bitrix24',
     'integration_utils.its_utils.app_gitpull',
     'start',
     'tasks',
     'ones_fresh_unf_with_b24',
     'crmfields',
+    'calluploader',
+    'duplicatefinder',
 ]
 
 MIDDLEWARE = [
