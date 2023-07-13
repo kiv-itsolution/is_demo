@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'crmfields',
     'calluploader',
     'duplicatefinder',
+    'users_n_supervisors',
+    'user_selector',
 ]
 
 MIDDLEWARE = [

@@ -8,7 +8,7 @@ from collections import Counter
 def find_duplicates(request):
     but = request.bitrix_user_token
     lst = list()
-    res = but.call_api_method('crm.product.list')['result']
+    res = but.call_list_method('crm.product.list')
     for i in res:
         lst.append(i["NAME"])
     res_count = Counter(lst)

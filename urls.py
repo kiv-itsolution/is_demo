@@ -29,5 +29,7 @@ urlpatterns = [
     path('ones/', include('ones_fresh_unf_with_b24.urls')),
     path('crmfields/', include('crmfields.urls')),
     path('calluploader/', include('calluploader.urls')),
-    path('duplicatefinder/', include('duplicatefinder.urls'))
+    path('duplicatefinder/', include('duplicatefinder.urls')),
+    path('users_n_supervisors/', include('users_n_supervisors.urls')),
+    path('user_selector/', include('user_selector.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

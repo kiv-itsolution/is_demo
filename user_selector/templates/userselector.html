@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+        button:hover{
+            background: lightgray;
+        }
+    .wrapper{
+     margin-bottom: 50px;
+     }
+    .custom_but{
+        background: lightgray;
+        cursor: not-allowed;
+    }
+    </style>
+</head>
+<body>
+<div>
+    <button onclick="document.location='{% url 'reload_start' %}'">Назад</button>
+</div>
+
+<div>
+    <h1>User selector</h1>
+    <div class='wrapper'>
+    <button id="SearchUser">Выбор сотрудника</button>
+    </div>
+    <div class="wrapper">
+    <form action="{% url 'show_user' %}" method="post">
+        <button disabled type="submit" name="selected_user" id="reqUser" class="custom_but">Получить информацию</button>
+    </form>
+    </div>
+    <table>
+  <tr>
+
+  </tr>
+    {% for k,v in req_user.items %}
+        <tr>
+            {% if v != '' %}
+                {% if k == 'PERSONAL_PHOTO' %}
+                    <td>{{ k }}</td>
+            <td><img src="{{v}}" width="200px" height="200px"></td>
+            {% else %}
+            <td>{{ k }}</td>
+            <td>{{ v }}</td>
+            {% endif %}
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+</body>
+<script src="//api.bitrix24.com/api/v1/"></script>
+<script src="{% static 'js/userselector.js' %}"></script>
+</html>
