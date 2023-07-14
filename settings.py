@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'duplicatefinder',
     'users_n_supervisors',
     'user_selector',
+    'companiesmap',
 ]
 
 MIDDLEWARE = [
@@ -144,6 +145,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -163,10 +165,6 @@ STATICFILES_FINDERS = (
 
 from integration_utils.its_utils.mute_logger import MuteLogger
 ilogger = MuteLogger()
-
-
-
-
 
 # local settings
 try:
