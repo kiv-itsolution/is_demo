@@ -36,7 +36,7 @@ SECRET_KEY = 'UxWXNk8hFEJYUkstPtBdtNgvqKfOFbME'
 DEBUG = False
 
 ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = ['https://751b-46-252-249-158.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://9f331a7de5c6-14688458821772174966.ngrok-free.app']
 
 # Application definition
 
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'users_n_supervisors',
     'user_selector',
     'companiesmap',
+    'allcompbizproc',
 ]
 
 MIDDLEWARE = [

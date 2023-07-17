@@ -32,5 +32,6 @@ urlpatterns = [
     path('duplicatefinder/', include('duplicatefinder.urls')),
     path('users_n_supervisors/', include('users_n_supervisors.urls')),
     path('user_selector/', include('user_selector.urls')),
-    path('companiesmap/', include('companiesmap.urls'))
+    path('companiesmap/', include('companiesmap.urls')),
+    path('allcompbizproc/', include('allcompbizproc.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
