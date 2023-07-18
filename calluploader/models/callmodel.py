@@ -38,7 +38,7 @@ class CallModel(models.Model):
             "CALL_ID": self.call_id,
             "USER_ID": self.user_id,
             "DURATION": self.duration,
-            "RECORD_URL": f'https://751b-46-252-249-158.ngrok-free.app/media/{self.record_url}',
+            "RECORD_URL": f'https://9f331a7de5c6-14688458821772174966.ngrok-free.app/media/{self.record_url}',
         })
 
     def __str__(self):
