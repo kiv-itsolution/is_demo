@@ -6,6 +6,10 @@ ALLOWED_HOSTS = ['*']
 
 from integration_utils.bitrix24.local_settings_class import LocalSettingsClass
 
+
+TINKOFF_API_KEY = 'OcxkrOFzdALb7WubboufleAyhLc7MS3y'
+
+
 APP_SETTINGS = LocalSettingsClass(
     portal_domain='is-demo.bitrix24.ru',
     app_domain='127.0.0.1:8000',

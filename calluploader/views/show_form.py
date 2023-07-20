@@ -13,11 +13,7 @@ def show_form(request):
         if form.is_valid():
             instance = form.save()
             but = request.bitrix_user_token
-            # cur_call = CallModel.objects.filter(user_phone_inner=form.data['user_phone_inner'],
-            #                                     phone_number=form.data['phone_number'],
-            #                                     call_start_date=form.data['call_start_date'],
-            #                                     type=form.data['type'],
-            #                                     )
+
             instance.register_call_id(but)
             instance.finish(but)
             return render(request, 'form.html', context={'form': form})
