@@ -1,63 +1,37 @@
-import requests
-from _local_settings import TINKOFF_API_KEY
+from voicekit_examples.python.tinkoff.cloud.stt.v1 import stt_pb2_grpc, stt_pb2
+import grpc
+from voicekit_examples.python.auth import authorization_metadata
+from _local_settings import ENDPOINT, API_KEY, SECRET_KEY
 
-#
-#
-# url = 'https://tqm-sme-integration.tinkoff.ru/import/call/with-file?apiVersion=1.0'
-# headers = {
-#     'accept': 'application/json',
-#     'Authorization': f'Bearer {TINKOFF_API_KEY}',
-# }
-#
-# files = {
-#     'file': ('В 1712 году столица.mp3', open('В 1712 году столица.mp3', 'rb'), 'audio/mpeg'),
-# }
-#
-# data = {
-#     'value': '{"id": "123456", '
-#              '"callDirection": "Inbound", '
-#              '"startDate": "2023-07-20T15:50:34.761+03:00", '
-#              '"endDate": "2023-07-20T15:51:44.761+03:00", '
-#              '"hangupParty": "Client", '
-#              '"operatorId": "743", '
-#              '"operatorChannel": "Left", '
-#              '"clientPhoneNumber": "+79819022105", '
-#              '"reason": "cool some reason", '
-#              '"result": "bool some result", '
-#              '"languageCode": "Ru", '
-#              '"taskType": "new"}'
-# }
-#
-# response = requests.post(url, headers=headers, files=files, data=data)
-# print(response.status_code)
+from pydub import AudioSegment
 
-url = 'https://tqm-sme.tinkoff.ru/bff-external-clients/task-tracker/tasks-list-by-evaluations'
-headers = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer OcxkrOFzdALb7WubboufleAyhLc7MS3y',
-    'Content-Type': 'application/json',
-}
+src = 'В 1712 году столица.mp3'
+dst = 'test.wav'
+sound = AudioSegment.from_mp3(src)
+sound.export(dst, format="wav")
 
-data = {
-    'evaluationIds': [
 
-    ]
-}
+def build_request():
+    request = stt_pb2.RecognizeRequest()
+    with open("test_file.wav", "rb") as f:
+        request.audio.content = f.read()
+    request.config.encoding = stt_pb2.AudioEncoding.LINEAR16
+    request.config.sample_rate_hertz = 44100  # Значение не содержится в файле ".s16"
+    request.config.num_channels = 1  # Значение не содержится в файле ".s16"
+    return request
 
-response = requests.post(url, headers=headers, json=data)
-print(response.json())
 
-# url = 'https://tqm-sme.tinkoff.ru/rest/external-call/report/autoevaluations'
-# headers = {
-#     'Accept': 'application/json',
-#     'Content-Type': 'application/json',
-# }
-#
-# data = {
-#     'startDate': '2023-07-20T10:15:22Z',
-#     'endDate': '2023-07-20T23:15:22Z',
-#     'operatorId': '743',
-# }
-#
-# response = requests.post(url, headers=headers, json=data)
-# print(response.status_code)
+def print_recognition_response(response):
+    for result in response.results:
+        print("Channel", result.channel)
+        print("Phrase start:", result.start_time.ToTimedelta())
+        print("Phrase end:  ", result.end_time.ToTimedelta())
+        for alternative in result.alternatives:
+            print('"' + alternative.transcript + '"')
+        print("----------------------------")
+
+
+stub = stt_pb2_grpc.SpeechToTextStub(grpc.secure_channel(ENDPOINT, grpc.ssl_channel_credentials()))
+metadata = authorization_metadata(API_KEY, SECRET_KEY, "tinkoff.cloud.stt")
+response = stub.Recognize(build_request(), metadata=metadata)
+print_recognition_response(response)

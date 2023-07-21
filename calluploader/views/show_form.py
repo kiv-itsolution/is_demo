@@ -13,7 +13,6 @@ def show_form(request):
         if form.is_valid():
             instance = form.save()
             but = request.bitrix_user_token
-
             instance.register_call_id(but)
             instance.finish(but)
             return render(request, 'form.html', context={'form': form})

@@ -8,7 +8,9 @@ from integration_utils.bitrix24.local_settings_class import LocalSettingsClass
 
 
 TINKOFF_API_KEY = 'OcxkrOFzdALb7WubboufleAyhLc7MS3y'
-
+ENDPOINT = 'api.tinkoff.ai:443'
+API_KEY = 'H59znTW1kDdUUzr3wb98dm6hxTrcogtMQ13gP1D9lts='
+SECRET_KEY = 'rcjUgeuMRidw9U/GSRr1JZGdIuEwoJRdpePteUTu4Cw='
 
 APP_SETTINGS = LocalSettingsClass(
     portal_domain='is-demo.bitrix24.ru',
