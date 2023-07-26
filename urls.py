@@ -28,10 +28,18 @@ urlpatterns = [
     path('tasks/', include('tasks.urls')),
     path('ones/', include('ones_fresh_unf_with_b24.urls')),
     path('crmfields/', include('crmfields.urls')),
-    path('calluploader/', include('calluploader.urls')),
+    path('callsuploader/', include('callsuploader.urls')),
     path('duplicatefinder/', include('duplicatefinder.urls')),
-    path('users_n_supervisors/', include('users_n_supervisors.urls')),
-    path('user_selector/', include('user_selector.urls')),
-    path('companiesmap/', include('companiesmap.urls')),
-    path('allcompbizproc/', include('allcompbizproc.urls'))
+    path('urlmanager/', include('usermanager.urls')),
+    path('selectuser/', include('selectuser.urls')),
+    path('company_on_map/', include('company_on_map.urls')),
+    path('robot/', include('robot_currency.urls', 'bitrix_robot_currency')),
+    path('employeegrid/', include('employeegrid.urls')),
+    path('product_list_in_excel/', include('product_list_excel.urls')),
+    path('allcompbizproc/', include('allcompbizproc.urls')),
+    path('import_company_google/', include('import_company_google.urls')),
+    path('demo_data_in_bitrix/', include('demo_data_in_bitrix.urls')),
+    path('audio_recognition/', include('audio_recognition.urls')),
+    path('best_call_manager/', include('best_call_manager.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
